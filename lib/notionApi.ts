@@ -1,5 +1,6 @@
 import { Client } from "@notionhq/client";
 import { NotionToMarkdown } from "notion-to-md";
+import { TagType } from "../pages/types/post";
 
 const notion = new Client({
   auth: process.env.NOTION_TOKEN
@@ -17,12 +18,12 @@ export const getAllPosts = async () => {
   });
 };
 
-const getTags = (tags) => {
+const getTags = (tags: TagType[]) => {
   const allTags = tags.map(tag => tag.name);
   return allTags
 }
 
-const getPageMetaData = (post) => {
+const getPageMetaData = (post: any) => {
   return {
     id: post.id,
     title: post.properties.Name.title[0].plain_text,

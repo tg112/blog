@@ -6,6 +6,13 @@ type PostType = {
   slug: string
 }
 
+type TagType = {
+  id: string;
+  name: string;
+  color: string;
+}
+
 export type {
-  PostType
+  PostType,
+  TagType
 }
