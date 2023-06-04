@@ -9,7 +9,6 @@ import Layout from './components/Layout'
 
 export const getStaticProps = async () => {
   const allPosts = await getAllPosts();
-
   return {
     props: {
       allPosts
@@ -33,7 +32,8 @@ const Home: NextPage = ({ allPosts }) => {
         </h1>
         {allPosts.map((post: PostType)  => (
           <div className='mx-4' key={post.title}>
-            <SinglePost title={post.title}
+            <SinglePost
+              title={post.title}
               description={post.description}
               date={post.date}
               tag={post.tag}
