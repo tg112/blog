@@ -1,8 +1,21 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
+import { getAllPosts } from '../lib/notionApi'
 
-const Home: NextPage = () => {
+export const getStaticProps = async () => {
+  const allPosts = await getAllPosts();
+
+  return {
+    props: {
+      allPosts
+    },
+    revalidate: 60 // ISRで必要。ここでは、60秒後毎に再更新していく。更新頻度によって変える。
+  }
+}
+
+const Home: NextPage = ({ allPosts }) => {
+  console.log(allPosts)
   return (
     <div className={styles.container}>
       <Head>
